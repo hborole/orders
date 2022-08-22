@@ -4,10 +4,10 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 
 import { NotFoundError, errorHandler, currentUser } from '@hbofficial/common';
-import { createTicketRouter } from './routes/new';
-import { showTicketRouter } from './routes/show';
-import { indexRouter } from './routes';
-import { updateTicketRouter } from './routes/update';
+import { indexOrderRouter } from './routes';
+import { createOrderRouter } from './routes/new';
+import { deleteOrderRouter } from './routes/delete';
+import { showOrderRouter } from './routes/show';
 
 const app = express();
 app.set('trust proxy', true);
@@ -21,10 +21,10 @@ app.use(
 
 app.use(currentUser);
 
-app.use(indexRouter);
-app.use(showTicketRouter);
-app.use(createTicketRouter);
-app.use(updateTicketRouter);
+app.use(indexOrderRouter);
+app.use(showOrderRouter);
+app.use(createOrderRouter);
+app.use(deleteOrderRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
