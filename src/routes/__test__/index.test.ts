@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../../app';
 
@@ -6,13 +7,25 @@ import { Ticket } from '../../models/ticket';
 
 it('fetches orders for a particular user', async () => {
   // Create three tickets
-  const ticketOne = Ticket.build({ title: 'Concert 1', price: 20 });
+  const ticketOne = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: 'Concert 1',
+    price: 20,
+  });
   await ticketOne.save();
 
-  const ticketTwo = Ticket.build({ title: 'Concert 2', price: 30 });
+  const ticketTwo = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: 'Concert 2',
+    price: 30,
+  });
   await ticketTwo.save();
 
-  const ticketThree = Ticket.build({ title: 'Concert 3', price: 40 });
+  const ticketThree = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: 'Concert 3',
+    price: 40,
+  });
   await ticketThree.save();
 
   // Create one order as User #1
